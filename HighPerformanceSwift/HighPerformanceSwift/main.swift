@@ -8,13 +8,17 @@
 
 import Foundation
 
-struct MyType {
+protocol SomeProtocol {
+    
+}
+
+struct MyType: SomeProtocol {
     let url: URL
     let id: UUID
     var site: String
 }
 
-var urls = [MyType]()
+var urls = [SomeProtocol]()
 
 for _ in 1...1000 {
     let item = MyType(url: URL(string: "https://www.apple.com")!,
