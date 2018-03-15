@@ -8,8 +8,11 @@
 
 import Foundation
 
-class Wombat {
+struct Wombat {
     var name = "Bob"
+    var meh1 = NSAttributedString()
+    var meh2 = NSAttributedString()
+    var meh3 = NSAttributedString()
 }
 
 var item = Wombat()
