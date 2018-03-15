@@ -4,28 +4,38 @@ import UIKit
 
 var str = "Hello, playground"
 
-enum PasswordError: Error {
-    case empty
-    case short
-    case obvious
+enum Failure: Error {
+    case badNetwork(message: String)
+    case broken
 }
 
-func functionA() {
-    do {
-        try functionB()
-    } catch {
-        print("Error")
-    }
+func definitelyWontThrow() {
+    print("Shiny!")
 }
 
-func functionB() throws {
-    do {
-        try functionC()
-    } catch PasswordError.empty {
-        print("Empty password")
-    }
+try definitelyWontThrow()
+
+func fetchRemote() throws -> String {
+    // complicated, failable work
+    throw Failure.badNetwork(message: "Firewall blocked port.")
 }
 
-func functionC() throws {
-    throw PasswordError.short
+func fetchLocal() -> String {
+    // this will never throw
+    return "Taylor"
 }
+
+func fetchUserData(using closure: () throws -> String) rethrows {
+    let userData = try closure()
+    print ("User data received: \(userData)")
+}
+
+do {
+    try fetchUserData(using: fetchRemote)
+} catch Failure.badNetwork(let message) {
+    print(message)
+} catch {
+    print("Error!")
+}
+
+fetchUserData(using: fetchLocal)
