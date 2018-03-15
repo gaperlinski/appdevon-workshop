@@ -2,40 +2,12 @@
 
 import UIKit
 
-var str = "Hello, playground"
+let fm =  FileManager.default
+let bundle = Bundle.main
 
-enum Failure: Error {
-    case badNetwork(message: String)
-    case broken
-}
+let contents = fm.contentsOfDirectory(atPath: bundle.resourcePath!)
 
-func definitelyWontThrow() {
-    print("Shiny!")
-}
+let savedText = (try? String(contentsOfFile: "myfile.txt")) ?? "Example text here"
 
-try definitelyWontThrow()
-
-func fetchRemote() throws -> String {
-    // complicated, failable work
-    throw Failure.badNetwork(message: "Firewall blocked port.")
-}
-
-func fetchLocal() -> String {
-    // this will never throw
-    return "Taylor"
-}
-
-func fetchUserData(using closure: () throws -> String) rethrows {
-    let userData = try closure()
-    print ("User data received: \(userData)")
-}
-
-do {
-    try fetchUserData(using: fetchRemote)
-} catch Failure.badNetwork(let message) {
-    print(message)
-} catch {
-    print("Error!")
-}
-
-fetchUserData(using: fetchLocal)
+let str = ""
+_ = try? str.write(to: URL("file://example.txt")!, atomically: true, encoding: .utf8)
