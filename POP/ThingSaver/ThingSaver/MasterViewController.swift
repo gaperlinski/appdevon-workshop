@@ -8,19 +8,14 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, NavigationBarStylingProtocol {
     let types = ["Movies", "Notes", "Photos", "Songs"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.isTranslucent = false
-        title = "THINGSAVER"
-
-        if let font = UIFont(name: "AvenirNext-Heavy", size: 30) {
-            let attrs = [NSAttributedStringKey.font: font]
-            navigationController?.navigationBar.titleTextAttributes = attrs
-        }
+        setCustomTitle(str: "THINGSAVER")
 
         tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         showDetailController(types[0])

@@ -8,18 +8,6 @@
 
 import Foundation
 
-class Song: NSObject, NSCoding {
+struct Song: Codable, ItemProtocol {
     var filename: String
-
-    init(filename: String) {
-        self.filename = filename
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        filename = aDecoder.decodeObject(forKey: "filename") as! String
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(filename, forKey: "filename")
-    }
 }

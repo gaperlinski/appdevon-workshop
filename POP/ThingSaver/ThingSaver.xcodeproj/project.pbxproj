@@ -27,6 +27,9 @@
 		51CBD77D1F9CD3C600E5A0E9 /* example.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51CBD7791F9CD3C600E5A0E9 /* example.mp3 */; };
 		51CBD77E1F9CD3C600E5A0E9 /* example.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51CBD77A1F9CD3C600E5A0E9 /* example.txt */; };
 		51CBD7831F9CF68C00E5A0E9 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CBD7821F9CF68C00E5A0E9 /* MasterViewController.swift */; };
+		B31F89C2205A8D01007DF3BF /* ItemStoringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31F89C1205A8D01007DF3BF /* ItemStoringProtocol.swift */; };
+		B35CEB50205AA22200C3095E /* NavigationBarStylingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CEB4F205AA22200C3095E /* NavigationBarStylingProtocol.swift */; };
+		B35CEB54205AA4BF00C3095E /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CEB53205AA4BF00C3095E /* ItemProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		51CBD7791F9CD3C600E5A0E9 /* example.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = example.mp3; sourceTree = "<group>"; };
 		51CBD77A1F9CD3C600E5A0E9 /* example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.txt; sourceTree = "<group>"; };
 		51CBD7821F9CF68C00E5A0E9 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		B31F89C1205A8D01007DF3BF /* ItemStoringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStoringProtocol.swift; sourceTree = "<group>"; };
+		B35CEB4F205AA22200C3095E /* NavigationBarStylingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarStylingProtocol.swift; sourceTree = "<group>"; };
+		B35CEB53205AA4BF00C3095E /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +98,14 @@
 				5190F5BF1F9CBB2C005C8896 /* PhotosViewController.swift */,
 				5190F5C11F9CBB34005C8896 /* SongsViewController.swift */,
 				51CBD7751F9CCC1B00E5A0E9 /* PreviewViewController.swift */,
+				B31F89C1205A8D01007DF3BF /* ItemStoringProtocol.swift */,
+				B35CEB4F205AA22200C3095E /* NavigationBarStylingProtocol.swift */,
 				51CBD7731F9CCACD00E5A0E9 /* Helper.swift */,
 				5190F5AB1F9CB462005C8896 /* Main.storyboard */,
 				5190F5AE1F9CB462005C8896 /* Assets.xcassets */,
 				5190F5B01F9CB462005C8896 /* LaunchScreen.storyboard */,
 				5190F5B31F9CB462005C8896 /* Info.plist */,
+				B35CEB53205AA4BF00C3095E /* ItemProtocol.swift */,
 				5190F5C31F9CC10D005C8896 /* Movie.swift */,
 				5190F5C51F9CC121005C8896 /* Note.swift */,
 				5190F5CB1F9CC14A005C8896 /* Photo.swift */,
@@ -198,6 +207,8 @@
 				5190F5BA1F9CB4A3005C8896 /* MoviesViewController.swift in Sources */,
 				5190F5BE1F9CBB23005C8896 /* NotesViewController.swift in Sources */,
 				5190F5C01F9CBB2C005C8896 /* PhotosViewController.swift in Sources */,
+				B35CEB50205AA22200C3095E /* NavigationBarStylingProtocol.swift in Sources */,
+				B31F89C2205A8D01007DF3BF /* ItemStoringProtocol.swift in Sources */,
 				5190F5C61F9CC121005C8896 /* Note.swift in Sources */,
 				5190F5A81F9CB462005C8896 /* AppDelegate.swift in Sources */,
 				5190F5CC1F9CC14A005C8896 /* Photo.swift in Sources */,
@@ -205,6 +216,7 @@
 				5190F5C81F9CC132005C8896 /* Song.swift in Sources */,
 				51CBD7761F9CCC1B00E5A0E9 /* PreviewViewController.swift in Sources */,
 				5190F5BC1F9CB8BB005C8896 /* SplitViewController.swift in Sources */,
+				B35CEB54205AA4BF00C3095E /* ItemProtocol.swift in Sources */,
 				51CBD7831F9CF68C00E5A0E9 /* MasterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

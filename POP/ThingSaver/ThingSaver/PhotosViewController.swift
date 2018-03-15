@@ -9,10 +9,12 @@
 import QuickLook
 import UIKit
 
-class PhotosViewController: UICollectionViewController, QLPreviewControllerDataSource {
+class PhotosViewController: UICollectionViewController, QLPreviewControllerDataSource, ItemStoringProtocol, NavigationBarStylingProtocol {
     var items = [Photo]()
     var selectedItem: Photo?
     var savedKeyName = "SavedPhotos"
+    let itemType = Photo.self
+    var fileExtension = "jpg"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +22,7 @@ class PhotosViewController: UICollectionViewController, QLPreviewControllerDataS
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addExampleData))
 
         navigationController?.navigationBar.isTranslucent = false
-        title = "PHOTOS"
-
-        if let font = UIFont(name: "AvenirNext-Heavy", size: 30) {
-            let attrs = [NSAttributedStringKey.font: font]
-            navigationController?.navigationBar.titleTextAttributes = attrs
-        }
-
+        setCustomTitle(str: "PHOTOS")
         loadData()
     }
 
@@ -47,35 +43,9 @@ class PhotosViewController: UICollectionViewController, QLPreviewControllerDataS
         return cell
     }
 
-    func loadData() {
-        let defaults = UserDefaults.standard
-
-        if let savedData = defaults.object(forKey: savedKeyName) as? Data {
-            if let savedItems = NSKeyedUnarchiver.unarchiveObject(with: savedData) as? [Photo] {
-                items = savedItems
-            }
-        }
-    }
-
-    func saveData() {
-        let defaults = UserDefaults.standard
-        let data = NSKeyedArchiver.archivedData(withRootObject: items)
-        defaults.set(data, forKey: savedKeyName)
-    }
-
     @objc func addExampleData() {
-        guard let sourceURL = Bundle.main.url(forResource: "example", withExtension: "jpg") else {
-            fatalError("Unable to locate input file")
-        }
-
-        let filename = NSUUID().uuidString + ".jpg"
-        let destURL = Helper.getPathInDocumentsDirectory(filename)
-        let fm = FileManager.default
-
         do {
-            try fm.copyItem(at: sourceURL, to: destURL)
-            let item = Photo(filename: filename)
-            items.append(item)
+            try addItem()
             saveData()
 
             collectionView?.insertItems(at: [IndexPath(item: items.count - 1, section: 0)])
@@ -85,14 +55,7 @@ class PhotosViewController: UICollectionViewController, QLPreviewControllerDataS
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem = items[indexPath.row]
-
-        let previewController = PreviewViewController()
-        previewController.dataSource = self
-
-        let navController = UINavigationController(rootViewController: previewController)
-        navController.modalPresentationStyle = .formSheet
-        present(navController, animated: true)
+        selectItem(indexPath.row)
     }
 
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
