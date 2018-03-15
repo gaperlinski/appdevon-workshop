@@ -48,3 +48,42 @@ let names = ["Taylor", "Paul", "Greg"]
 let count = names.reduce(0) { $0 + $1.count }
 print(count)
 
+
+// Combining functional programming functions
+
+let london = (name: "London", continent: "Europe", population: 8_000_000)
+let paris = (name: "Paris", continent: "Europe", population: 2_500_000)
+let tokyo = (name: "Tokio", continent: "Asia", population: 12_000_000)
+let cities = [london, paris, tokyo]
+
+precedencegroup CompositionPrecedence {
+    associativity: left
+}
+
+infix operator >>>: CompositionPrecedence
+
+func >>> <T, U, V>(lhs: @escaping (T) -> U, rhs: @escaping (U) -> V) -> (T) -> V {
+    return { rhs(lhs($0)) }
+}
+
+func generateNumber(max: Int) -> Int {
+    let number = Int(arc4random_uniform(UInt32(max)))
+    return number
+}
+
+func calculateFactors(number: Int) -> [Int] {
+    return (1...number).filter { number % $0 == 0 }
+}
+
+func reduceToString(numbers: [Int]) -> String {
+    return numbers.reduce("Factors: ") {
+        $0 + String($1) + " "
+    }
+}
+
+generateNumber(max: 65)
+calculateFactors(number: 100)
+
+let result = reduceToString(numbers: calculateFactors(number: generateNumber(max: 100)))
+let combined = generateNumber >>> calculateFactors >>> reduceToString
+print(combined(100))
