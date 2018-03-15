@@ -1,5 +1,6 @@
 //: Playground - noun: a place where people can play
 
+import UIKit
 
 enum Weather {
     case cloudy(coverage: Int)
@@ -32,4 +33,14 @@ case is UIView:
     print("Found a view")
 default:
     print("Something else")
+}
+
+let otherView = UIView()
+
+for case let label as UILabel in otherView.subviews {
+    print(label)
+}
+
+for subview in otherView.subviews where subview is UILabel {
+    print(subview)
 }
